@@ -18,6 +18,10 @@ const windows = require('./windows')
 
 const WEBTORRENT_VERSION = require('webtorrent/package.json').version
 
+if (process.platform === 'darwin') {
+  app.setName(config.APP_NAME_MAC)
+}
+
 let shouldQuit = false
 let argv = sliceArgv(process.argv)
 

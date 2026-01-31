@@ -117,6 +117,9 @@ const darwin = {
   // Build for Mac
   platform: 'darwin',
 
+  // App bundle name for Mac.
+  name: config.APP_NAME_MAC || config.APP_NAME,
+
   // Build x64 binary only.
   arch: 'x64',
 
@@ -187,7 +190,7 @@ function buildDarwin (cb) {
   electronPackager(Object.assign({}, all, darwin)).then(function (buildPath) {
     console.log('Mac: Packaged electron. ' + buildPath)
 
-    const appPath = path.join(buildPath[0], config.APP_NAME + '.app')
+    const appPath = path.join(buildPath[0], darwin.name + '.app')
     const contentsPath = path.join(appPath, 'Contents')
     const resourcesPath = path.join(contentsPath, 'Resources')
     const infoPlistPath = path.join(contentsPath, 'Info.plist')
@@ -328,7 +331,7 @@ function buildDarwin (cb) {
       // Create .zip file (used by the auto-updater)
       console.log('Mac: Creating zip...')
 
-      const inPath = path.join(buildPath[0], config.APP_NAME + '.app')
+      const inPath = path.join(buildPath[0], darwin.name + '.app')
       const outPath = path.join(DIST_PATH, BUILD_NAME + '-darwin.zip')
       zip.zipSync(inPath, outPath)
 
@@ -348,7 +351,7 @@ function buildDarwin (cb) {
         basepath: config.ROOT_PATH,
         target: targetPath,
         specification: {
-          title: config.APP_NAME,
+          title: darwin.name,
           icon: config.APP_ICON + '.icns',
           background: path.join(config.STATIC_PATH, 'appdmg.png'),
           'icon-size': 128,

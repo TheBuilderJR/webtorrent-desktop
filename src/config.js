@@ -4,6 +4,7 @@ const { app } = require('electron')
 const arch = require('arch')
 
 const APP_NAME = 'WebTorrent'
+const APP_NAME_MAC = 'Torrent'
 const APP_TEAM = 'WebTorrent, LLC'
 const APP_VERSION = require('../package.json').version
 
@@ -27,6 +28,7 @@ module.exports = {
   APP_FILE_ICON: path.join(__dirname, '..', 'static', 'WebTorrentFile'),
   APP_ICON: path.join(__dirname, '..', 'static', 'WebTorrent'),
   APP_NAME,
+  APP_NAME_MAC,
   APP_TEAM,
   APP_VERSION,
   APP_WINDOW_TITLE: APP_NAME,

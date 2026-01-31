@@ -230,7 +230,9 @@ function updateElectron () {
   }
   if (state.dock.progress.toFixed(2) !== state.prev.progress.toFixed(2)) {
     state.prev.progress = state.dock.progress
-    ipcRenderer.send('setProgress', state.dock.progress)
+    if (process.platform !== 'darwin') {
+      ipcRenderer.send('setProgress', state.dock.progress)
+    }
   }
   if (state.dock.badge !== state.prev.badge) {
     state.prev.badge = state.dock.badge

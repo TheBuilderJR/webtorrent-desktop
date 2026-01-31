@@ -345,7 +345,7 @@ function getMenuTemplate () {
   if (process.platform === 'darwin') {
     // WebTorrent menu (Mac)
     template.unshift({
-      label: config.APP_NAME,
+      label: config.APP_NAME_MAC || config.APP_NAME,
       submenu: [
         {
           role: 'about'
